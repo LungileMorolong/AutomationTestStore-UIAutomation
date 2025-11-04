@@ -8,9 +8,8 @@ namespace AutomationTestStore.Pages
     public class PageObjects
     {
         protected WebDriverWait _wait;
-
         protected IWebDriver CurrentDriver;
-        protected readonly Actions _actions;
+        protected Actions _actions;
 
 
         public PageObjects(IWebDriver driver)
