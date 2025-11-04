@@ -1,0 +1,40 @@
+# Build results
+
+[Bb]in/
+[Oo]bj/
+TestResults/
+*.log
+*.exe
+*.dll
+*.pdb
+*.cache
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# Logs and screenshots
+Logs/
+Screenshots/
+
+#Reports
+Reports/
+AllureReport/
+AllureResults/
+ExtentReports/
+
+#System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+#dotenv
+.env
