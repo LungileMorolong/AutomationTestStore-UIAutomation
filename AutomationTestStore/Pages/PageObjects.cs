@@ -10,7 +10,7 @@ namespace AutomationTestStore.Pages
         protected WebDriverWait _wait;
 
         protected IWebDriver CurrentDriver;
-        protected Actions _actions;
+        protected readonly Actions _actions;
 
 
         public PageObjects(IWebDriver driver)
