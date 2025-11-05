@@ -107,6 +107,27 @@ namespace AutomationTestStore.Pages
             var subMenuElement = WaitForElementToBeEnabled(subMenuLocator);
             _actions.MoveToElement(subMenuElement).Click().Perform();
         }
+        public void SelectByText(By by, string visibleText)
+        {
+            try
+            {
+                var element = WaitForElementToBeEnabled(by);
+                var selectElement = new SelectElement(element);
+                selectElement.SelectByText(visibleText);
+            }
+            catch (NoSuchElementException ex)
+            {
+                throw new Exception($"Option with text '{visibleText}' was not found in dropdown: {by}", ex);
+            }
+            catch (WebDriverTimeoutException ex)
+            {
+                throw new Exception($"Dropdown element with locator {by} was not found within timeout.", ex);
+            }
+            catch (UnexpectedTagNameException ex)
+            {
+                throw new Exception($"Element located by {by} is not a <select> element.", ex);
+            }
+        }
         #endregion
 
         #region Alert Methods
