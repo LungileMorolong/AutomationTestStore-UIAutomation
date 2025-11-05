@@ -11,6 +11,7 @@ namespace AutomationTestStore.Pages
         private By loginButton = By.CssSelector("#loginFrm > fieldset > button");
         private By forgotPasswordLink = By.CssSelector("#loginFrm > fieldset > a:nth-child(3)");
         private By forgotYourLoginLink = By.CssSelector("#loginFrm > fieldset > a:nth-child(4)");
+        private By invalidLoginWarningMessage = By.CssSelector("#maincontainer > div > div > div > div.alert.alert-error.alert-danger");
         #endregion
 
         #region Constructor
@@ -50,6 +51,12 @@ namespace AutomationTestStore.Pages
         {
             Logs.Step("Clicking on Forgot Your Login Link");
             Click(forgotYourLoginLink);
+        }
+
+        public string GetInvalidLoginWarningMessage()
+        {
+            Logs.Step("Getting Invalid Login Warning Message");
+            return GetText(invalidLoginWarningMessage);
         }
         #endregion
     }
