@@ -9,6 +9,7 @@ namespace AutomationTestStore.Pages
         private By welcomeBackText = By.CssSelector("#customer_menu_top > li > a > div");
         private By resetPasswordButton = By.CssSelector("#maincontainer > div > div.col-md-9.col-xs-12.mt20 > div > ul > li:nth-child(2) > a");
         private By logoutLinkText = By.CssSelector("#maincontainer > div > div.column_right.col-md-3.col-xs-12.mt20 > div.sidewidt > div > ul > li:nth-child(10) > a");
+        private By passwordChangeSuccessMessage = By.CssSelector("#maincontainer > div > div.col-md-9.col-xs-12.mt20 > div > div.alert.alert-success");
         #endregion
 
         #region Constructor
@@ -32,6 +33,11 @@ namespace AutomationTestStore.Pages
         {
             Logs.Step("Clicking on Logout Button");
             Click(logoutLinkText);
+        }
+        public string GetPasswordChangeSuccessMessage()
+        {
+            Logs.Step("Getting Password Change Success Message");
+            return GetText(passwordChangeSuccessMessage);
         }
         #endregion
     }
