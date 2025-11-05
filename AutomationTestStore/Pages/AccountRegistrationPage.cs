@@ -31,6 +31,7 @@ namespace AutomationTestStore.Pages
         private By continueButton = By.CssSelector("#AccountFrm > div.form-group > div > div > button");
 
         private By registrationSuccessMessage = By.CssSelector("#maincontainer > div > div.col-md-9.col-xs-12.mt20 > div > div > section > p:nth-child(3)");
+        private By registrationFailureMessage = By.CssSelector("#maincontainer > div > div > div > div.alert.alert-error.alert-danger");
         #endregion
 
         #region Constructor
@@ -135,8 +136,9 @@ namespace AutomationTestStore.Pages
         public string GetRegistrationFailureMessage()
         {
             Logs.Step("Retrieving Registration Failure Message.");
-            return GetAlertText();
+            return GetText(registrationFailureMessage);
         }
         #endregion
     }
 }
+
