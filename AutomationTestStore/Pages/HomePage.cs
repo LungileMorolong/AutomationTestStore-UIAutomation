@@ -35,6 +35,12 @@ namespace AutomationTestStore.Pages
             Logs.Step("Clicking on Login or Register");
             Click(loginOrRegister);
         }
+
+        public string GetLoginOrRegisterText()
+        {
+            Logs.Step("Getting Login or Register Text");
+            return GetText(loginOrRegister);
+        }
         #endregion
     }
 }
