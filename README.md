@@ -18,10 +18,6 @@ Running the Tests
 
 Project Structure
 
-Contributing
-
-License
-
 Author
 
 ## About
