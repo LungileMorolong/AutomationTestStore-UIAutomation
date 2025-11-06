@@ -1,6 +1,6 @@
 # AutomationTestStore UI Automation
 
-Automated UI test suite for the Test Store website
+Automated UI test suite for the Automation Test Store website
 
 ## Table of Contents
 
