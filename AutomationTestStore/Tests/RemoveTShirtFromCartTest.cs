@@ -35,7 +35,7 @@ namespace AutomationTestStore.Tests
             accountLoginPage.EnterLoginDetails(userName, loginPassword);
             accountLoginPage.ClickOnLoginButton();
 
-            homePage.SelectTShirtFromApprealAndAccessoriesMenu();
+            homePage.SelectTShirtFromApparelAndAccessoriesMenu();
 
             tshirtGalleryPage.ClickOnTShirtProductTile();
 

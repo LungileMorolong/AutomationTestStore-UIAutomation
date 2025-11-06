@@ -6,7 +6,7 @@ namespace AutomationTestStore.Pages
     {
         #region Private Fields
         private By homeMenuOption = By.CssSelector("#categorymenu > nav > ul > li:nth-child(1) > a");
-        private By apprealAndAccessoriesMenuOption = By.CssSelector("#categorymenu > nav > ul > li:nth-child(2) > a");
+        private By apparelAndAccessoriesMenuOption = By.CssSelector("#categorymenu > nav > ul > li:nth-child(2) > a");
         private By tshirtDropDownOption = By.CssSelector("#categorymenu > nav > ul > li:nth-child(2) > div > ul:nth-child(1) > li:nth-child(2) > a");
         private By loginOrRegister = By.CssSelector("#customer_menu_top > li > a");
         private By viewCartButton = By.CssSelector("#main_menu_top > li:nth-child(3) > a > span");
@@ -25,10 +25,10 @@ namespace AutomationTestStore.Pages
             Click(homeMenuOption);
         }
 
-        public void SelectTShirtFromApprealAndAccessoriesMenu()
+        public void SelectTShirtFromApparelAndAccessoriesMenu()
         {
-            Logs.Step("Selecting T-Shirt from Appreal and Accessories Menu");
-            HoverAndSelectDropdown(apprealAndAccessoriesMenuOption, tshirtDropDownOption);
+            Logs.Step("Selecting T-Shirt from Apparel and Accessories Menu");
+            HoverAndSelectDropdown(apparelAndAccessoriesMenuOption, tshirtDropDownOption);
         }
 
         public void ClickOnLoginOrRegister()
