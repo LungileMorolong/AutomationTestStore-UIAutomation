@@ -13,7 +13,7 @@ namespace AutomationTestStore.Tests
     public class CreateUserTest : BaseTests
     {
         [Test(Description = "Create a new user account"), Order(1)]
-        [AllureTag("Registation", "Positive")]
+        [AllureTag("Registration", "Positive")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("QA Team")]
         public void CreateNewUserAccount()
@@ -72,7 +72,7 @@ namespace AutomationTestStore.Tests
         }
 
         [Test(Description = "Create a user account using exisiting user details"), Order(2)]
-        [AllureTag("Registation", "Negative")]
+        [AllureTag("Registration", "Negative")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("QA Team")]
         public void CreateExistingUserAccount()

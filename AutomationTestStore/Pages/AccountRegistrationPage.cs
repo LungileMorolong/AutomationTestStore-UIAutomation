@@ -89,7 +89,7 @@ namespace AutomationTestStore.Pages
             SelectByText(countryDropDown, country);
         }
 
-        public void EnterLoginDetails(string loginName, string password)
+        public void EnterLoginDetails(string loginName, string password, string confirmPassword)
         {
             Logs.Step($"Entering Login Name: {loginName}");
             ClearAndSendKeys(loginNameInputField, loginName);
@@ -98,7 +98,7 @@ namespace AutomationTestStore.Pages
             ClearAndSendKeys(passwordInputField, password);
 
             Logs.Step($"Entering Confirm Password.");
-            ClearAndSendKeys(confirmPasswordInputField, password);
+            ClearAndSendKeys(confirmPasswordInputField, confirmPassword);
         }
 
         public void SelectNewsletterSubscription(bool subscribe)
