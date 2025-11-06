@@ -30,7 +30,7 @@ Automated UI tests covering core user journeys
 
 Page Object Model (POM) implementation to separate page-specific logic from test logic
 
-Configurable environment (base URL, browser) settings
+Configurable environment settings
 
 Clear reports of test results
 
