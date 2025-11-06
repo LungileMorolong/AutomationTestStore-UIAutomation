@@ -2,7 +2,7 @@
 
 namespace AutomationTestStore.Pages
 {
-    internal class LogoutPage : PageObjects
+    public class LogoutPage : PageObjects
     {
         #region Private Fields
         private By logoutMessage = By.CssSelector("#maincontainer > div > div > div > div > section > p:nth-child(3)");

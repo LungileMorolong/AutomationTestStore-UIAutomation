@@ -1,17 +1,18 @@
-﻿using NUnit.Allure.Attributes;
-using Allure.Commons;
-using NUnit.Framework;
-using NUnit.Allure.Core;
+﻿using Allure.Commons;
 using AutomationTestStore.Pages;
+using AutomationTestStore.Utils;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using NUnit.Framework;
 
 namespace AutomationTestStore.Tests
 {
-    [TestFixture]
+    [TestFixture, Order(2)]
     [AllureNUnit]
     [AllureSuite("User Login")]
     public class LoginTest : BaseTests
     {
-        [Test(Description = "User login into account")]
+        [Test(Description = "User login into account"), Order(1)]
         [AllureTag("Login", "Positive")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("QA Team")]
@@ -21,14 +22,21 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
 
+            string filePath = Constants.TestDataFilePath;
+            string sheetName = "Login Details";
+
+            string firstName = ExcelDataReader.ReadData(filePath, sheetName, "B2");
+            string userName = ExcelDataReader.ReadData(filePath, sheetName, "C2");
+            string password = ExcelDataReader.ReadData(filePath, sheetName, "D2");
+
             homePage.ClickOnLoginOrRegister();
-            accountLoginPage.EnterLoginDetails("PlayoinTeam", "SecurePassword123");
+            accountLoginPage.EnterLoginDetails(userName, password);
             accountLoginPage.ClickOnLoginButton();
 
             var welcomeText = myAccountPage.GetWelcomeBackText();
             try
             {
-                Assert.That(welcomeText, Does.Contain($"Welcome back {"Playi"}"));
+                Assert.That(welcomeText, Does.Contain($"Welcome back {firstName}"));
                 Logs.Info("User logged in successfully and verified.");
             }
             catch (AssertionException ex)
@@ -38,7 +46,7 @@ namespace AutomationTestStore.Tests
             }
         }
 
-        [Test(Description = "User login using invalid username")]
+        [Test(Description = "User login using invalid username"), Order(2)]
         [AllureTag("Login", "Negative")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("QA Team")]
@@ -48,8 +56,14 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
 
+            string filePath = Constants.TestDataFilePath;
+            string sheetName = "Login Details";
+
+            string invalidUserName = ExcelDataReader.ReadData(filePath, sheetName, "C3");
+            string invalidUserNamePassword = ExcelDataReader.ReadData(filePath, sheetName, "D3");
+
             homePage.ClickOnLoginOrRegister();
-            accountLoginPage.EnterLoginDetails("PlayonTeam", "SecurePassword123");
+            accountLoginPage.EnterLoginDetails(invalidUserName, invalidUserNamePassword);
             accountLoginPage.ClickOnLoginButton();
 
             var errorMessage = accountLoginPage.GetInvalidLoginWarningMessage();
@@ -65,7 +79,7 @@ namespace AutomationTestStore.Tests
             }
         }
 
-        [Test(Description = "User login using invalid password")]
+        [Test(Description = "User login using invalid password"), Order(3)]
         [AllureTag("Login", "Negative")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("QA Team")]
@@ -75,8 +89,14 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
 
+            string filePath = Constants.TestDataFilePath;
+            string sheetName = "Login Details";
+
+            string invalidPasswordUserName = ExcelDataReader.ReadData(filePath, sheetName, "C4");
+            string invalidPassword = ExcelDataReader.ReadData(filePath, sheetName, "D4");
+
             homePage.ClickOnLoginOrRegister();
-            accountLoginPage.EnterLoginDetails("PlayoinTeam", "SecurePassword13");
+            accountLoginPage.EnterLoginDetails(invalidPasswordUserName, invalidPassword);
             accountLoginPage.ClickOnLoginButton();
 
             var errorMessage = accountLoginPage.GetInvalidLoginWarningMessage();
