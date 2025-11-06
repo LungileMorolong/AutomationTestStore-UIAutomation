@@ -42,9 +42,9 @@ Follow these steps to get the project running on your local machine.
 
 ## Prerequisites
 
-.NET (choose correct version, e.g. .NET 6/7) or whatever framework your test suite uses
+.NET (choose correct version, e.g. .NET 6/7)
 
-A supported browser driver (e.g., EdgeOptions for Edge)
+A supported browser driver (e.g. EdgeOptions for Edge)
 
 Visual Studio / VS Code (or your IDE of choice)
 
@@ -65,7 +65,7 @@ dotnet restore   # or your build command
 
 ### Configure test settings:
 
-Adjust appsettings.json or similar config file to set baseUrl, browser, etc.
+Adjust appsettings.json or similar config file to set baseUrl, etc.
 
 Ensure the required browser driver is available in PATH or the configured location.
 
@@ -81,9 +81,7 @@ To run a specific test suite or category:
 dotnet test --filter Category=Smoke   # example  
 
 
-Test results output will be generated under the TestResults folder (or configured output folder).
-
-Integrate with CI/CD by invoking the test command followed by publishing the results.
+Test results output will be generated under the allure-results folder.
 
 ## Project Structure
 ```
@@ -92,7 +90,7 @@ Integrate with CI/CD by invoking the test command followed by publishing the res
 ├── /Data               # Contains the TestData excel sheet
 ├── /Pages              # Page object classes representing UI pages
 ├── /Tests              # Test classes implementing scenarios
-├── /Utils              # Helper classes, driver setup, config loaders
+├── /Utils              # Contains ExcelReader class
 ├── appsettings.json    # Configuration file for environments, browsers, etc.
 ├── WebDriverFactory.cs # IWebDriver class to create the Edge driver
 ├── BaseTests.cs        # Base class that contains the SetUp and TearDown NUnit Fixture
@@ -106,8 +104,6 @@ Integrate with CI/CD by invoking the test command followed by publishing the res
 Pages: Each page class encapsulates locators + actions for that page.
 
 Tests: Contains test methods grouped by feature (e.g., checkout, login).
-
-Utilities: Common utilities for WebDriver initialization, waiting, logging, etc.
 
 ## Author
 
