@@ -22,7 +22,7 @@ Author
 
 ## About
 
-This project provides an end-to-end UI automation test suite targeting the Test Store application. It is designed to validate key user flows in the store such as product browsing, search, account creation/login, checkout, and more. It uses a modular framework to promote readability, maintainability, and reusability of test code.
+This project provides an end-to-end UI automation test suite targeting the Automation Test Store application. It is designed to validate key user flows in the store such as product browsing, search, account creation/login, shopping cart, and more. It uses a modular framework to promote readability, maintainability, and reusability of test code.
 
 ## Features
 
