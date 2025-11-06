@@ -90,6 +90,7 @@ Test results output will be generated under the TestResults folder (or configure
 Integrate with CI/CD by invoking the test command followed by publishing the results.
 
 ## Project Structure
+```
 /AutomationTestStore
 │
 ├── /Data               # Contains the TestData excel sheet
@@ -104,7 +105,7 @@ Integrate with CI/CD by invoking the test command followed by publishing the res
 ├── Logs.cs             # Class used for logging messages during execution
 ├── AutomationTestStore.sln  # Solution file
 └── README.md
-
+```
 
 Pages: Each page class encapsulates locators + actions for that page.
 
