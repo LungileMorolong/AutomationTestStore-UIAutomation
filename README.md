@@ -38,7 +38,7 @@ Easily extensible for additional test cases / flows
 
 ## Getting Started
 
-Follow these steps to get the project running on your local machine or CI environment.
+Follow these steps to get the project running on your local machine.
 
 ## Prerequisites
 
