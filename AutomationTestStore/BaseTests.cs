@@ -49,7 +49,7 @@ namespace AutomationTestStore
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to take screenshot: {ex.Message}");
+                Logs.Info($"Failed to take screenshot: {ex.Message}");
             }
         }
     }
