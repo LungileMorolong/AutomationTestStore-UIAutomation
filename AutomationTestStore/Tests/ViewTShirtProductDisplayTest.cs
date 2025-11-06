@@ -1,12 +1,13 @@
-﻿using NUnit.Allure.Attributes;
-using Allure.Commons;
-using NUnit.Framework;
-using NUnit.Allure.Core;
+﻿using Allure.Commons;
 using AutomationTestStore.Pages;
+using AutomationTestStore.Utils;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using NUnit.Framework;
 
 namespace AutomationTestStore.Tests
 {
-    [TestFixture]
+    [TestFixture, Order(6)]
     [AllureNUnit]
     [AllureSuite("Go to T-Shirt Product Display")]
     public class ViewTShirtProductDisplayTest : BaseTests
@@ -22,9 +23,15 @@ namespace AutomationTestStore.Tests
             TshirtGalleryPage tshirtGalleryPage = new TshirtGalleryPage(Driver);
             TShirtProductDisplayPage tShirtProductDisplayPage = new TShirtProductDisplayPage(Driver);
 
+            string filePath = Constants.TestDataFilePath;
+            string loginSheetName = "Login Details";
+
+            string userName = ExcelDataReader.ReadData(filePath, loginSheetName, "C5");
+            string loginPassword = ExcelDataReader.ReadData(filePath, loginSheetName, "D5");
+
             homePage.ClickOnLoginOrRegister();
 
-            accountLoginPage.EnterLoginDetails("PlayoinTeam", "Newwording");
+            accountLoginPage.EnterLoginDetails(userName, loginPassword);
             accountLoginPage.ClickOnLoginButton();
 
             homePage.SelectTShirtFromApprealAndAccessoriesMenu();
