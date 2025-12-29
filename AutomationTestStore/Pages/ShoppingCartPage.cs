@@ -6,7 +6,7 @@ namespace AutomationTestStore.Pages
     {
         #region Private Fields
         private By productName = By.CssSelector("#cart > div > div.container-fluid.cart-info.product-list > table > tbody > tr:nth-child(2) > td:nth-child(2) > a");
-        private By quantityNumber = By.CssSelector("#cart_quantity123d4ba17727b9155709742d2033b6e8e11");
+        private By quantityNumber = By.CssSelector("#cart_quantity1232b2351e536ad293222b586fbf65d778f");
         private By removeButton = By.CssSelector("#cart > div > div.container-fluid.cart-info.product-list > table > tbody > tr:nth-child(2) > td:nth-child(7) > a");
         private By emptyCartMessage = By.CssSelector("#maincontainer > div > div > div > div");
         #endregion
