@@ -22,12 +22,10 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string sheetName = "Login Details";
 
-            string firstName = ExcelDataReader.ReadData(filePath, sheetName, "B2");
-            string userName = ExcelDataReader.ReadData(filePath, sheetName, "C2");
-            string password = ExcelDataReader.ReadData(filePath, sheetName, "D2");
+            string firstName = JsonDataLoader.GetExistingUser().firstName;
+            string userName = JsonDataLoader.GetExistingUser().loginName;
+            string password = JsonDataLoader.GetExistingUser().password;
 
             homePage.ClickOnLoginOrRegister();
             accountLoginPage.EnterLoginDetails(userName, password);
@@ -56,14 +54,11 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string sheetName = "Login Details";
-
-            string invalidUserName = ExcelDataReader.ReadData(filePath, sheetName, "C3");
-            string invalidUserNamePassword = ExcelDataReader.ReadData(filePath, sheetName, "D3");
+            string invalidLoginName = JsonDataLoader.GetExistingUser().invalidLoginName;
+            string invalidLoginPassword = JsonDataLoader.GetExistingUser().invalidPassword;
 
             homePage.ClickOnLoginOrRegister();
-            accountLoginPage.EnterLoginDetails(invalidUserName, invalidUserNamePassword);
+            accountLoginPage.EnterLoginDetails(invalidLoginName, invalidLoginPassword);
             accountLoginPage.ClickOnLoginButton();
 
             var errorMessage = accountLoginPage.GetInvalidLoginWarningMessage();
@@ -89,14 +84,11 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string sheetName = "Login Details";
-
-            string invalidPasswordUserName = ExcelDataReader.ReadData(filePath, sheetName, "C4");
-            string invalidPassword = ExcelDataReader.ReadData(filePath, sheetName, "D4");
+            string invalidPasswordLoginName = JsonDataLoader.GetExistingUser().loginName;
+            string invalidPassword = JsonDataLoader.GetExistingUser().invalidPassword;
 
             homePage.ClickOnLoginOrRegister();
-            accountLoginPage.EnterLoginDetails(invalidPasswordUserName, invalidPassword);
+            accountLoginPage.EnterLoginDetails(invalidPasswordLoginName, invalidPassword);
             accountLoginPage.ClickOnLoginButton();
 
             var errorMessage = accountLoginPage.GetInvalidLoginWarningMessage();

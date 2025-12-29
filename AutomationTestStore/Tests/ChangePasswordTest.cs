@@ -21,25 +21,62 @@ namespace AutomationTestStore.Tests
 
             HomePage homePage = new HomePage(Driver);
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
+            AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
             ChangePasswordPage changePasswordPage = new ChangePasswordPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string loginSheetName = "Login Details";
-            string passwordChangeSheetName = "Password Change";
-
-            string userName = ExcelDataReader.ReadData(filePath, loginSheetName, "C2");
-            string currentPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "B2");
-            string newPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "C2");
-            string confirmNewPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "D2");
+            string firstName = JsonDataLoader.GetNewUser().firstName;
+            string lastName = JsonDataLoader.GetNewUser().lastName;
+            string email = CredentialGenerator.GenerateRandomEmail();
+            string telephone = JsonDataLoader.GetNewUser().telephone;
+            string fax = JsonDataLoader.GetNewUser().fax;
+            string company = JsonDataLoader.GetNewUser().company;
+            string address1 = JsonDataLoader.GetNewUser().address1;
+            string address2 = JsonDataLoader.GetNewUser().address2;
+            string city = JsonDataLoader.GetNewUser().city;
+            string region = JsonDataLoader.GetNewUser().region;
+            string zipCode = JsonDataLoader.GetNewUser().postalCode;
+            string country = JsonDataLoader.GetNewUser().country;
+            string loginName = CredentialGenerator.GenerateRandomUsername();
+            string password = CredentialGenerator.GenerateRandomPassword();
+            string confirmPassword = password;
+            string newPassword = CredentialGenerator.GenerateRandomPassword();
+            string confirmNewPassword = newPassword;
 
             homePage.ClickOnLoginOrRegister();
-            accountLoginPage.EnterLoginDetails(userName, currentPassword);
-            accountLoginPage.ClickOnLoginButton();
+            accountLoginPage.ClickOnRegistrationContinueButton();
+
+            accountRegistrationPage.EnterMandatoryPersonalDetails(firstName, lastName, email);
+            accountRegistrationPage.EnterNonMandatoryPersonalDetails(telephone, fax);
+
+            accountRegistrationPage.EnterNonMandatoryAddressDetails(company, address2, country);
+            accountRegistrationPage.EnterMandatoryAddressDetails(address1, city, region, zipCode);
+
+            accountRegistrationPage.EnterLoginDetails(loginName, password, confirmPassword);
+
+            accountRegistrationPage.SelectNewsletterSubscription(true);
+
+            accountRegistrationPage.AgreeToTermsAndConditions();
+
+            accountRegistrationPage.ClickContinueButton();
+
+            var successMessage = accountRegistrationPage.GetRegistrationSuccessMessage();
+            try
+            {
+                Assert.That(successMessage, Does.Contain("Congratulations! Your new account has been successfully created!"));
+                Logs.Info("User account created successfully and verified.");
+            }
+            catch (AssertionException ex)
+            {
+                Logs.Info($"Assertion failed: {ex.Message}");
+                throw;
+            }
+
+            accountRegistrationPage.ClickAccountContinueButton();
 
             myAccountPage.ClickOnResetPasswordButton();
 
-            changePasswordPage.EnterCurrentAndNewPassword(currentPassword, newPassword, confirmNewPassword);
+            changePasswordPage.EnterCurrentAndNewPassword(password, newPassword, confirmNewPassword);
             changePasswordPage.ClickOnContinueButton();
 
             var passwordChangeMessage = myAccountPage.GetPasswordChangeSuccessMessage();
@@ -63,24 +100,60 @@ namespace AutomationTestStore.Tests
         {
             HomePage homePage = new HomePage(Driver);
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
+            AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
             ChangePasswordPage changePasswordPage = new ChangePasswordPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string loginSheetName = "Login Details";
-            string passwordChangeSheetName = "Password Change";
-
-            string currentPasswordUserName = ExcelDataReader.ReadData(filePath, loginSheetName, "C5");
-            string currentLoginPassword = ExcelDataReader.ReadData(filePath, loginSheetName, "D5");
-
-            string invalidCurrentPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "B3");
-            string newPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "C3");
-            string confirmNewPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "D3");
+            string firstName = JsonDataLoader.GetNewUser().firstName;
+            string lastName = JsonDataLoader.GetNewUser().lastName;
+            string email = CredentialGenerator.GenerateRandomEmail();
+            string telephone = JsonDataLoader.GetNewUser().telephone;
+            string fax = JsonDataLoader.GetNewUser().fax;
+            string company = JsonDataLoader.GetNewUser().company;
+            string address1 = JsonDataLoader.GetNewUser().address1;
+            string address2 = JsonDataLoader.GetNewUser().address2;
+            string city = JsonDataLoader.GetNewUser().city;
+            string region = JsonDataLoader.GetNewUser().region;
+            string zipCode = JsonDataLoader.GetNewUser().postalCode;
+            string country = JsonDataLoader.GetNewUser().country;
+            string loginName = CredentialGenerator.GenerateRandomUsername();
+            string password = CredentialGenerator.GenerateRandomPassword();
+            string confirmPassword = password;
+            string invalidCurrentPassword = CredentialGenerator.GenerateRandomPassword();
+            string newPassword = CredentialGenerator.GenerateRandomPassword();
+            string confirmNewPassword = newPassword;
 
             homePage.ClickOnLoginOrRegister();
 
-            accountLoginPage.EnterLoginDetails(currentPasswordUserName, currentLoginPassword);
-            accountLoginPage.ClickOnLoginButton();
+            accountLoginPage.ClickOnRegistrationContinueButton();
+
+            accountRegistrationPage.EnterMandatoryPersonalDetails(firstName, lastName, email);
+            accountRegistrationPage.EnterNonMandatoryPersonalDetails(telephone, fax);
+
+            accountRegistrationPage.EnterNonMandatoryAddressDetails(company, address2, country);
+            accountRegistrationPage.EnterMandatoryAddressDetails(address1, city, region, zipCode);
+
+            accountRegistrationPage.EnterLoginDetails(loginName, password, confirmPassword);
+
+            accountRegistrationPage.SelectNewsletterSubscription(true);
+
+            accountRegistrationPage.AgreeToTermsAndConditions();
+
+            accountRegistrationPage.ClickContinueButton();
+
+            var successMessage = accountRegistrationPage.GetRegistrationSuccessMessage();
+            try
+            {
+                Assert.That(successMessage, Does.Contain("Congratulations! Your new account has been successfully created!"));
+                Logs.Info("User account created successfully and verified.");
+            }
+            catch (AssertionException ex)
+            {
+                Logs.Info($"Assertion failed: {ex.Message}");
+                throw;
+            }
+
+            accountRegistrationPage.ClickAccountContinueButton();
 
             myAccountPage.ClickOnResetPasswordButton();
 
@@ -108,28 +181,62 @@ namespace AutomationTestStore.Tests
         {
             HomePage homePage = new HomePage(Driver);
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
+            AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage(Driver);
             MyAccountPage myAccountPage = new MyAccountPage(Driver);
             ChangePasswordPage changePasswordPage = new ChangePasswordPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string loginSheetName = "Login Details";
-            string passwordChangeSheetName = "Password Change";
-
-            string confirmPasswordUserName = ExcelDataReader.ReadData(filePath, loginSheetName, "C5");
-            string confirmLoginPassword = ExcelDataReader.ReadData(filePath, loginSheetName, "D5");
-
-            string currentPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "B4");
-            string newPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "C4");
-            string invalidConfirmNewPassword = ExcelDataReader.ReadData(filePath, passwordChangeSheetName, "D4");
+            string firstName = JsonDataLoader.GetNewUser().firstName;
+            string lastName = JsonDataLoader.GetNewUser().lastName;
+            string email = CredentialGenerator.GenerateRandomEmail();
+            string telephone = JsonDataLoader.GetNewUser().telephone;
+            string fax = JsonDataLoader.GetNewUser().fax;
+            string company = JsonDataLoader.GetNewUser().company;
+            string address1 = JsonDataLoader.GetNewUser().address1;
+            string address2 = JsonDataLoader.GetNewUser().address2;
+            string city = JsonDataLoader.GetNewUser().city;
+            string region = JsonDataLoader.GetNewUser().region;
+            string zipCode = JsonDataLoader.GetNewUser().postalCode;
+            string country = JsonDataLoader.GetNewUser().country;
+            string loginName = CredentialGenerator.GenerateRandomUsername();
+            string password = CredentialGenerator.GenerateRandomPassword();
+            string confirmPassword = password;
+            string newPassword = CredentialGenerator.GenerateRandomPassword();
+            string invalidConfirmNewPassword = CredentialGenerator.GenerateRandomPassword();
 
             homePage.ClickOnLoginOrRegister();
+            accountLoginPage.ClickOnRegistrationContinueButton();
 
-            accountLoginPage.EnterLoginDetails(confirmPasswordUserName, confirmLoginPassword);
-            accountLoginPage.ClickOnLoginButton();
+            accountRegistrationPage.EnterMandatoryPersonalDetails(firstName, lastName, email);
+            accountRegistrationPage.EnterNonMandatoryPersonalDetails(telephone, fax);
+
+            accountRegistrationPage.EnterNonMandatoryAddressDetails(company, address2, country);
+            accountRegistrationPage.EnterMandatoryAddressDetails(address1, city, region, zipCode);
+
+            accountRegistrationPage.EnterLoginDetails(loginName, password, confirmPassword);
+
+            accountRegistrationPage.SelectNewsletterSubscription(true);
+
+            accountRegistrationPage.AgreeToTermsAndConditions();
+
+            accountRegistrationPage.ClickContinueButton();
+
+            var successMessage = accountRegistrationPage.GetRegistrationSuccessMessage();
+            try
+            {
+                Assert.That(successMessage, Does.Contain("Congratulations! Your new account has been successfully created!"));
+                Logs.Info("User account created successfully and verified.");
+            }
+            catch (AssertionException ex)
+            {
+                Logs.Info($"Assertion failed: {ex.Message}");
+                throw;
+            }
+
+            accountRegistrationPage.ClickAccountContinueButton();
 
             myAccountPage.ClickOnResetPasswordButton();
 
-            changePasswordPage.EnterCurrentAndNewPassword(currentPassword, newPassword, invalidConfirmNewPassword);
+            changePasswordPage.EnterCurrentAndNewPassword(password, newPassword, invalidConfirmNewPassword);
             changePasswordPage.ClickOnContinueButton();
 
             var passwordMismatchErrorMessage = changePasswordPage.GetPasswordMismatchErrorMessage();
