@@ -5,6 +5,7 @@ using NUnit.Allure.Core;
 using AutomationTestStore.Pages;
 using AutomationTestStore.Utils;
 
+
 namespace AutomationTestStore.Tests
 {
     [TestFixture, Order(1)]
@@ -22,24 +23,21 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string sheetName = "Create User";
-
-            string firstName = ExcelDataReader.ReadData(filePath, sheetName, "B2");
-            string lastName = ExcelDataReader.ReadData(filePath, sheetName, "C2");
-            string email = ExcelDataReader.ReadData(filePath, sheetName, "D2");
-            string telephone = ExcelDataReader.ReadData(filePath, sheetName, "E2");
-            string fax = ExcelDataReader.ReadData(filePath, sheetName, "F2");
-            string company = ExcelDataReader.ReadData(filePath, sheetName, "G2");
-            string address1 = ExcelDataReader.ReadData(filePath, sheetName, "H2");
-            string address2 = ExcelDataReader.ReadData(filePath, sheetName, "I2");
-            string city = ExcelDataReader.ReadData(filePath, sheetName, "J2");
-            string region = ExcelDataReader.ReadData(filePath, sheetName, "K2");
-            string zipCode = ExcelDataReader.ReadData(filePath, sheetName, "L2");
-            string country = ExcelDataReader.ReadData(filePath, sheetName, "M2");
-            string loginName = ExcelDataReader.ReadData(filePath, sheetName, "N2");
-            string password = ExcelDataReader.ReadData(filePath, sheetName, "O2");
-            string confirmPassword = ExcelDataReader.ReadData(filePath, sheetName, "P2");
+            string firstName = JsonDataLoader.GetNewUser().firstName;
+            string lastName = JsonDataLoader.GetNewUser().lastName;
+            string email = CredentialGenerator.GenerateRandomEmail();
+            string telephone = JsonDataLoader.GetNewUser().telephone;
+            string fax = JsonDataLoader.GetNewUser().fax;
+            string company = JsonDataLoader.GetNewUser().company;
+            string address1 = JsonDataLoader.GetNewUser().address1;
+            string address2 = JsonDataLoader.GetNewUser().address2;
+            string city = JsonDataLoader.GetNewUser().city;
+            string region = JsonDataLoader.GetNewUser().region;
+            string zipCode = JsonDataLoader.GetNewUser().postalCode;
+            string country = JsonDataLoader.GetNewUser().country;
+            string loginName = CredentialGenerator.GenerateRandomUsername();
+            string password = CredentialGenerator.GenerateRandomPassword();
+            string confirmPassword = password;
 
             homePage.ClickOnLoginOrRegister();
             accountLoginPage.ClickOnRegistrationContinueButton();
@@ -81,24 +79,22 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string sheetName = "Create User";
 
-            string existingFirstName = ExcelDataReader.ReadData(filePath, sheetName, "B3");
-            string existingLastName = ExcelDataReader.ReadData(filePath, sheetName, "C3");
-            string existingEmail = ExcelDataReader.ReadData(filePath, sheetName, "D3");
-            string existingTelephone = ExcelDataReader.ReadData(filePath, sheetName, "E3");
-            string existingFax = ExcelDataReader.ReadData(filePath, sheetName, "F3");
-            string existingCompany = ExcelDataReader.ReadData(filePath, sheetName, "G3");
-            string existingAddress1 = ExcelDataReader.ReadData(filePath, sheetName, "H3");
-            string existingAddress2 = ExcelDataReader.ReadData(filePath, sheetName, "I3");
-            string existingCity = ExcelDataReader.ReadData(filePath, sheetName, "J3");
-            string existingRegion = ExcelDataReader.ReadData(filePath, sheetName, "K3");
-            string existingZipCode = ExcelDataReader.ReadData(filePath, sheetName, "L3");
-            string existingCountry = ExcelDataReader.ReadData(filePath, sheetName, "M3");
-            string existingLoginName = ExcelDataReader.ReadData(filePath, sheetName, "N3");
-            string existingPassword = ExcelDataReader.ReadData(filePath, sheetName, "O3");
-            string existingConfirmPassword = ExcelDataReader.ReadData(filePath, sheetName, "P3");
+            string existingFirstName = JsonDataLoader.GetExistingUser().firstName;
+            string existingLastName = JsonDataLoader.GetExistingUser().lastName;
+            string existingEmail = CredentialGenerator.GenerateRandomEmail();
+            string existingTelephone = JsonDataLoader.GetExistingUser().telephone;
+            string existingFax = JsonDataLoader.GetExistingUser().fax;
+            string existingCompany = JsonDataLoader.GetExistingUser().company;
+            string existingAddress1 = JsonDataLoader.GetExistingUser().address1;
+            string existingAddress2 = JsonDataLoader.GetExistingUser().address2;
+            string existingCity = JsonDataLoader.GetExistingUser().city;
+            string existingRegion = JsonDataLoader.GetExistingUser().region;
+            string existingZipCode = JsonDataLoader.GetExistingUser().postalCode;
+            string existingCountry = JsonDataLoader.GetExistingUser().country;
+            string existingLoginName = JsonDataLoader.GetExistingUser().loginName;
+            string existingPassword = JsonDataLoader.GetExistingUser().password;
+            string existingConfirmPassword = JsonDataLoader.GetExistingUser().confirmPassword;
 
             homePage.ClickOnLoginOrRegister();
             accountLoginPage.ClickOnRegistrationContinueButton();
