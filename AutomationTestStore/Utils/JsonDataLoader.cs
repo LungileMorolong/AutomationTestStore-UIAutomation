@@ -6,8 +6,6 @@ namespace AutomationTestStore.Utils
 {
     public static class JsonDataLoader
     {
-        // Load from a path relative to project root or absolute path.
-        // Default path assumes TestData.json is at "Data/TestData.json" relative to project root.
         public static JsonData Load(string path = "Data/TestData.json")
         {
             var resolved = ResolvePath(path);
