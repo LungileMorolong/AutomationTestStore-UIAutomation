@@ -23,11 +23,8 @@ namespace AutomationTestStore.Tests
             AccountLoginPage accountLoginPage = new AccountLoginPage(Driver);
             TshirtGalleryPage tshirtGalleryPage = new TshirtGalleryPage(Driver);
 
-            string filePath = Constants.TestDataFilePath;
-            string loginSheetName = "Login Details";
-
-            string userName = ExcelDataReader.ReadData(filePath, loginSheetName, "C5");
-            string loginPassword = ExcelDataReader.ReadData(filePath, loginSheetName, "D5");
+            string userName = JsonDataLoader.GetExistingUser().loginName;
+            string loginPassword = JsonDataLoader.GetExistingUser().password;
 
             homePage.ClickOnLoginOrRegister();
 
