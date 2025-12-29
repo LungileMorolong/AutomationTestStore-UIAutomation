@@ -1,0 +1,38 @@
+{
+  "CreateUser":{
+    "NewUser": {
+      "firstName": "LungileTest1",
+      "lastName": "ecommertest1",
+      "telephone": "011 121 1212",
+      "fax": "098 765 5432",
+      "company": "EcommerceTest",
+      "address1": "Randburg",
+      "address2": "Johannesburg",
+      "city": "Johannesburg",
+      "region": "Gauteng",
+      "postalCode": "2199",
+      "country": "South Africa"
+    },
+    "ExistingUser": {
+      "firstName": "LungileTest",
+      "lastName": "ecommertest",
+      "email": "ecommerce1@gmail.com",
+      "telephone": "011 121 1212",
+      "fax": "098 765 5432",
+      "company": "EcommerceTest",
+      "address1": "Randburg",
+      "address2": "Johannesburg",
+      "city": "Johannesburg",
+      "region": "Gauteng",
+      "postalCode": "2199",
+      "country": "South Africa",
+      "loginName": "Lecommerce1",
+      "password": "SecurePassword",
+      "confirmPassword": "SecurePassword",
+      "newPassword": "SecurePassword2",
+      "confirmNewPassword": "SecurePassword2",
+      "invalidPassword": "WrongPassword",
+      "invalidLoginName": "WrongLogin"
+    }
+  }
+}
