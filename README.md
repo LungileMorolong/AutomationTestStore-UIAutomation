@@ -87,10 +87,10 @@ Test results output will be generated under the allure-results folder.
 ```
 /AutomationTestStore
 │
-├── /Data               # Contains the TestData excel sheet
+├── /Data               # Contains the TestData json file
 ├── /Pages              # Page object classes representing UI pages
 ├── /Tests              # Test classes implementing scenarios
-├── /Utils              # Contains ExcelReader class
+├── /Utils              # Contains JsonData, JsonDataLoader, and CredentialGenerator class
 ├── appsettings.json    # Configuration file for environments, browsers, etc.
 ├── WebDriverFactory.cs # IWebDriver class to create the Edge driver
 ├── BaseTests.cs        # Base class that contains the SetUp and TearDown NUnit Fixture
